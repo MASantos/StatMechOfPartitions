@@ -1,0 +1,149 @@
+
+\documentclass[12pt]{amsart}
+\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\geometry{a4paper} % or letter or a5paper or ... etc
+% \geometry{landscape} % rotated page geometry
+
+% See the ``Article customise'' template for come common customisations
+
+\title{Notes for Statistical Mechanics of Partitions}
+\author{}
+\date{} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\maketitle
+%\tableofcontents
+
+%%%%%
+%%%%%%
+%%
+%%  V A L U A T I O N S
+%%
+\section{Valuations on Lattices}
+Oct 17, 2018
+
+\subsection{Example: Buff	on's needle problem}
+\subsection{GC. Rota's seminar\cite{GCRota97}:  Valuations on Lattices}
+$\,$\linebreak 
+%Indicator function
+{\bf Definition 1}: If $A\subset \Sigma$, for a set of ($N_\Sigma$) elements, $\Sigma$, the {\sl indicator function},
+or simply indicator, of $A$, denoted as $I_A$, is the function on $\Sigma$ given by
+\[
+\begin{array}{c}
+I_A(c) \,=\,1;\quad c\,\in\,A 
+\\
+I_A(c) \,=\,0;\quad c\,\notin\,A 
+\end{array}
+\]
+
+{\bf Note to self:} For partitions, the indicator function would be defined for the set of {\sl blocks} or
+{\sl clusters}. Hence, if $S$ is the underlying set of $N$ elements whose partitions we are studying, 
+\[
+N_\Sigma\,=\,\sum_{j=1}^N\,\left(\begin{array}{c}N\\j\end{array}\right)\,=\,2^N\,-\,1
+\]
+and $\Sigma\,=\, \mathcal{P} (S)\,-\,\emptyset$ the set of all non-empty subsets of $S$. Any partition $P$ can be viewed as $P=\{P_1,\dots,P_\mathcal{K}\}\,\subset\,\Sigma(S)$, a finite collection of non-empty subsets, $P_i \subset S$ such that they cover $S$, i.e., $S=\cup_i\,P_i$. 
+Hence, $\forall\, P\in\Pi(S)\,\Rightarrow \,P\subset \Sigma(S)$.
+
+Indicator functions satisfy:
+\[
+\begin{array}{c}
+I_{A\wedge B}\,=\,I_AI_B\\
+I_{A\vee B}\,=\,I_A\,+\,I_B\,-I_AI_B\,=\,1-(1-I_A)(1-I_B)
+\end{array}
+\]
+
+(\textbf{TODO}: Check that, indeed, we can substitute $\cap,\,\cup$ for $\wedge,\,\vee$) 
+
+%Simple Function
+\textbf{Definition 2}: An \textit{L-simple} function, or \textit{simple} function, is a finite  linear combination 
+\[
+f\,=\,\sum_{i=1}^k\,\alpha_i\,I_{{}_iP}
+\]
+where $\alpha_i\in\mathbb{R}$ and  ${}_iP\in\Pi(S)$ are partitions of a given set $S$.
+ 
+%Valuation
+{\bf Definition 3}: A valuation $\mu$ on the lattice, $\Pi$, of all partitions of a set S is a function
+\[ 
+\begin{array}{c}
+\mu \, : \, \Pi \, \longrightarrow \, \mathbb{R}  
+\\
+\forall \, P\,,Q\,\in\,\Pi \, \rightarrow \, \\
+\mu(P\vee Q) \,=\, \mu(P)\,+\,\mu(Q)\,-\,\mu(P\wedge Q)
+\\
+\mu(\bar{0}) \,=\,0 
+\end{array}
+\]
+For distributive lattices $P\wedge(Q\vee R) = (P\wedge Q)\vee (P\wedge R)$ (and its dual relation).
+
+Iterating
+\[
+\begin{array}{l}
+\mu(P\vee Q\vee R)\,=\,\mu(P)\,+\,\mu(Q\vee R)\,-\,\mu( (P\wedge Q)\vee (P\wedge R))\,=\,
+\\
+\mu(P)\,+\,\mu(Q)\,+\,\mu(R)\,-\,\mu(P\wedge Q)\,-\,\mu(P\wedge R)\,-\,\mu(Q\wedge R)\,+\,
+\mu(P\wedge Q\wedge R)\\
+\\
+\mu(P\vee Q\vee R\vee T\vee \dots) \,=\,
+
+\mu(P)\,+\,\mu(Q)\,+\,\mu(R)\,+\,\mu(T)\,\dots + \\
+-\,\mu(P\wedge Q)\,-\,\mu(P\wedge R)\,-\,\dots \,+ \\
++\,\mu(P\wedge Q\wedge R)\,+\,\mu(P\wedge Q\wedge T)\,+\,\dots\,-\\
+-\,\mu(P\wedge Q\wedge R\wedge T)
+
+\end{array}
+\]
+
+%Generating set of L
+\textbf{Definition 4}: A \textit{generating set} of $\Pi(S)$ is a subset $G\subset \Pi(S)$, such that $\forall P\in\Pi \Rightarrow P=\vee_i\, B_i\quad; \,B_i\in G$.
+
+Using the inclusion-exclusion formula for indicators, it can be shown that any simple function can be written as 
+\[
+f\,=\,\sum_{i=1}^r\,\beta_i\,I_{B_i}
+\]
+
+A valuation $\nu$ on $G$ can be extended to one $\mu$ on $\Pi(S)$ by using the exclusion-inclusion formula. $\forall\,P\in\Pi(S)\;;\;P=B_1\vee\dots\vee B_n$
+\[
+\mu(P)\,=\,\sum_i\,\nu(B_i)\,-\,\sum_{i<j}\,\mu(B_i\wedge B_j)\,+\,\dots
+\]
+
+%Integral wrt \mu on G
+\textbf{Definition 5}: Given a valuation $\mu$ on $G$, and a simple function 
+$f=\alpha_1\,I_{B_1}\,+\,\dots\,+\,\alpha_kI_{B_k}$, with $B_i\in G$, we define the
+\textit{integral of $f$ wrt $\mu$} as 
+\[
+\int\,f\,d\mu\,=\,\sum_{i=1}^k\,\alpha_i\,\mu(B_i)
+\] 
+
+\textbf{Groemer's Integral Theorem}: Let $G$ be a generating set for a lattice $L$ and $\mu$ a valuation on $G$. The following statements are equivalent
+\begin{enumerate}
+\item $\mu$ extends uniquely to a valuation on $L$.
+\item $\mu$ satisfies the inclusion-exclusion identities
+\[
+\mu(B_1\vee\dots\vee B_n)\,=\,\sum_i\,\mu(B_i)\,-\,\sum_{i<j}\,\mu(B_i\wedge B_j)\,+\,\dots
+\]
+\item $\mu$ defines an integral on the vector space of linear combinations of indicator functions of sets in $L$
+
+Proof: (1)$\Rightarrow$ (2) and (3)$\Rightarrow$(1), trivial; (2)$\Rightarrow$(3), not trivial.
+
+\end{enumerate}
+
+\subsection{Valuations on Simplicial Complexes}
+\subsection{Euler Characteristic}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+\bibitem{GCRota97} {\sl Introduction to Geometric Probability}, Daniel A. Klain and Gian-Carlo Rota, CUP, 1997.
+\end{thebibliography}
+
+\end{document}
+
+
+
+
+
+
+
+
+
